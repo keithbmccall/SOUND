@@ -1,0 +1,176 @@
+* {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Dhurjati', sans-serif;
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+img {
+    height: 125px;
+    width: 125px;
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-label {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    text-align: right;
+    margin-top: -2px;
+    margin-left: -35px;
+}
+
+.label {
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+.login-input {
+    background-color: #99ccff;
+    margin: 5px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid #99ccff;
+}
+
+
+
+.login-top {
+    height: 250px;
+}
+
+.login-bottom {
+    margin-top: 100px;
+}
+
+.login-control {
+    position: absolute;
+}
+
+.login-logo {
+    background: url(http://www.canuckiwi.com/wp-content/uploads/2016/12/Utah-Logo-600-400.png);
+    background-size: cover;
+    grid-column-start: 2;
+}
+
+.login-button {
+    padding: 5px;
+    width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.login-button:hover {
+    font-size: 18px;
+    transition: all 1s ease;
+}
+
+.login-button:active {
+    border: 1px solid black;
+}
+
+.centered-true {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.grid-col-2 {
+    grid-column-start: 2;
+    text-align: center;
+    height: 100px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+
+
+
+/*GENERAL STYLE*/
+
+.nav {
+    position: relative;
+    border-right: 2px solid black;
+    height: 100vh;
+}
+
+.list {
+    top: 20%;
+    font-size: 40px;
+    list-style-type: none;
+}
+
+.logout {
+    position: absolute;
+    bottom: 5%;
+}
+
+.dashboard {
+    overflow: scroll;
+    width: 100%;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 33% 67%;
+}
+
+h1 {
+
+    font-size: 50px;
+    font-family: 'Dhurjati', sans-serif;
+}
+
+.artist-content {
+    font-family: 'Padauk', sans-serif;
+}
+
+.artist {
+    flex: 1;
+    font-size: 20px;
+}
+
+.dash-top {
+    height: 250px;
+    background: cyan;
+}
+
+#searchbar {
+    height: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.search-box {
+    margin-top: 50px;
+}
+
+.choose {
+    margin-top: 20px;
+}

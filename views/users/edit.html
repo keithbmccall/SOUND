@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User Profile</title>
+    <link href="https://fonts.googleapis.com/css?family=Dhurjati" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="container">
+            <div class="nav">
+                <div>{{user.username}}</div>
+                <ul class="list centered-true">
+                    <li>Account</li>
+                    <li><a href="/sounds">Browse</a></li>
+                    <li><a href="/sounds/library">Library</a></li>
+                </ul>
+                <div class="centered-true logout">
+                    <a href="/users/logout">Logout</a>
+                </div>
+            </div>
+            <div class="grid-3 dashboard">
+                <div class="grid-col-2">
+                    <form id="updateAccount">
+                        <h1>EDIT ACCOUNT</h1>
+                        <label for="fname" class="label">First Name</label>
+                        <input type="text" id="fname" name="fname" value="{{user.fname}}">
+                        <br>
+                        <label for="lname" class="label">Last Name</label>
+                        <input type="text" id="lname" name="lname" value="{{user.lname}}">
+                        <br>
+                        <label for="email" class="label">Email</label>
+                        <input type="text" id="email" name="email" value="{{user.email}}">
+                        <br>
+                        <label for="username" class="label">Username</label>
+                        <input type="text" id="username" name="username" value="{{user.username}}">
+                        <br>
+                        <input type="hidden" id="userId" name="userId" value="{{user.id}}">
+                        <br>
+                        <input type="submit" value="Update Account">
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
