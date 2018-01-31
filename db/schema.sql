@@ -1,9 +1,3 @@
-DROP DATABASE IF EXISTS sounds_users;
-
-CREATE DATABASE sounds_users;
-
-\c sounds_users
-
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
