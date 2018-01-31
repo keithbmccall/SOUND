@@ -21,7 +21,7 @@ app.use(express.static(__dirname + '/public'));
 
 // set up session middleware
 app.use(session({
-    secret: 'keyboard cat',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
