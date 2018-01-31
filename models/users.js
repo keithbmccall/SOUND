@@ -3,10 +3,9 @@ const bcrypt = require('bcryptjs');
 const db = require('../db/index.js');
 
 const userModelObject = {};
-
+var theUser;
 // Note that this is NOT middleware!
 userModelObject.create = function create(user) {
-    // This is where we obtain the hash of the user's password.
     const passwordDigest = bcrypt.hashSync(user.password, 10);
     // Generally we try to avoid passing promises around, but here 
     // LocalStrategy's interface means we can't just rely on next() 
@@ -52,15 +51,5 @@ userModelObject.findByEmailMiddleware = function findByEmailMiddleware(req, res,
 // This section just demonstrates that we can build middleware for the user model 
 // and talk to the database as usual. 
 // Note that we now have access to req.user for user information, thanks to passport.
-
-userModelObject.incrementUserCounter = function incrementUserCounter(req, res, next) {
-    // get the user counter number
-    db.one(
-        'UPDATE users SET counter = counter + 1 WHERE email = $1 RETURNING counter', [req.user.email]
-    ).then((counterData) => {
-        res.locals.counterData = counterData;
-        next();
-    }).catch(err => console.log('ERROR:', err));
-};
 
 module.exports = userModelObject;

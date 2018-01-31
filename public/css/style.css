@@ -36,21 +36,14 @@ img {
     margin-left: -35px;
 }
 
-.label {
-    font-size: 22px;
-    letter-spacing: 1px;
-}
-
 .login-input {
     background-color: #99ccff;
     margin: 5px;
     height: 20px;
     padding: 5px;
     border-radius: 8px;
-    border: 2px solid #99ccff;
+    border: 2px solid #167499;
 }
-
-
 
 .login-top {
     height: 250px;
@@ -60,12 +53,18 @@ img {
     margin-top: 100px;
 }
 
+.sign-up-bottom {
+    margin-top: 220px;
+}
+
 .login-control {
     position: absolute;
 }
 
 .login-logo {
-    background: url(http://www.canuckiwi.com/wp-content/uploads/2016/12/Utah-Logo-600-400.png);
+    margin: 39% 0 0 5%;
+    height: 25%;
+    background: url(/images/sounds.png);
     background-size: cover;
     grid-column-start: 2;
 }
@@ -79,7 +78,7 @@ img {
 }
 
 .login-button:hover {
-    font-size: 18px;
+    font-size: 17px;
     transition: all 1s ease;
 }
 
@@ -109,6 +108,18 @@ img {
     grid-template-columns: 25% 25% 25% 25%;
 }
 
+.grid-nav {
+    display: grid;
+    grid-template-columns: 30% 50%;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -120,15 +131,29 @@ img {
     height: 100vh;
 }
 
+.nav-logo-box {
+    margin-top: 30px;
+    background: blue;
+    height: 100px;
+}
+
+.nav-logo {
+    grid-column-start: 2;
+    margin: 10% 0 0 0;
+    height: 200px;
+    background: url(/images/sounds.png);
+    background-size: cover;
+}
+
 .list {
-    top: 20%;
+    top: 140px;
     font-size: 40px;
     list-style-type: none;
 }
 
 .logout {
     position: absolute;
-    bottom: 5%;
+    bottom: 20px;
 }
 
 .dashboard {
@@ -153,13 +178,15 @@ h1 {
 
 .artist {
     flex: 1;
-    font-size: 20px;
+    font-size: 14px;
 }
 
 .dash-top {
     height: 250px;
-    background: cyan;
+    background: #167499;
 }
+
+.input-library {}
 
 #searchbar {
     height: 30px;
@@ -173,4 +200,35 @@ h1 {
 
 .choose {
     margin-top: 20px;
+    text-align: center;
+}
+
+.edit-button {
+    color: #167499;
+}
+
+.edit-button a:link {
+    color: #167499;
+}
+
+.edit-button a:visited {
+    color: #167499;
+}
+
+.edit-button a:hover {
+    font-size: 18px;
+}
+
+.profile-content {
+    font-family: 'Padauk', sans-serif;
+    font-size: 17px;
+}
+
+#updateAccount input {
+    border: 1px solid black;
+    padding: 2px;
+}
+
+.update-account-submit {
+    border: 2px solid black;
 }

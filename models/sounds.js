@@ -1,38 +1,32 @@
 const axios = require('axios');
 const db = require("../db/index.js");
-
+const userData = require('./users.js');
 const sounds = {};
 
 
 sounds.allPreSongs = (req, res, next) => {
-    var doom = axios({
+    var bruno = axios({
         method: "get",
-        url: "https://itunes.apple.com/search?term=mf+doom&limit=250&entity=song&sort=recent"
+        url: "https://itunes.apple.com/search?term=bruno+mars&limit=4&entity=song&sort=recent"
     });
-    var viktor = axios({
+    var kendrick = axios({
         method: "get",
-        url: "https://itunes.apple.com/search?term=viktor+vaughn&limit=250&entity=song&sort=recent"
+        url: "https://itunes.apple.com/search?term=kendrick+lamar&limit=4&entity=song&sort=recent"
     });
-    var danger = axios({
+    var cara = axios({
         method: "get",
-        url: "https://itunes.apple.com/lookup?id=1158467280&limit=250&entity=song"
+        url: "https://itunes.apple.com/search?term=alessia+cara&limit=4&entity=song&sort=recent"
     });
-    var king = axios({
+    var lorde = axios({
         method: "get",
-        url: "https://itunes.apple.com/search?term=king+geedorah&limit=250&entity=song&sort=recent"
+        url: "https://itunes.apple.com/search?term=lorde&limit=4&entity=song&sort=recent"
     });
-    var jj = axios({
-        method: "get",
-        url: "https://itunes.apple.com/search?term=jj+doom&limit=250&entity=song&sort=recent"
-    });
-
-    Promise.all([doom, viktor, danger, king, jj])
+    Promise.all([bruno, kendrick, cara, lorde])
         .then(response => {
-            res.locals.allDoomData = response[0].data.results;
-            res.locals.allViktorData = response[1].data.results;
-            res.locals.allDangerData = response[2].data.results;
-            res.locals.allKingData = response[3].data.results;
-            res.locals.allJJData = response[4].data.results;
+            res.locals.allBrunoData = response[0].data.results;
+            res.locals.allKendrickData = response[1].data.results;
+            res.locals.allCaraData = response[2].data.results;
+            res.locals.allLordeData = response[3].data.results;
             next();
         })
         .catch(err => {
@@ -47,7 +41,7 @@ sounds.searchedSongs = (req, res, next) => {
     // const search = req.query.search;
     axios({
             method: 'get',
-            url: `https://itunes.apple.com/search?term=${req.query.search}`,
+            url: `https://itunes.apple.com/search?term=${req.query.search}&limit=200`,
         })
         .then(response => {
             res.locals.searchedSongs = response.data.results;
@@ -81,14 +75,16 @@ sounds.specificSong = (req, res, next) => {
 };
 
 sounds.saveSong = (req, res, next) => {
-    console.log("****: ", req.body)
     db
         .none(
-            "INSERT INTO sounds (name, artist, image, itunes_track_id, user_id) VALUES ($1,$2,$3,$4,$5);", [
+            "INSERT INTO sounds (name, artist, image, itunes_track_id, album, preview, genre, user_id) VALUES ($1,$2,$3,$4,$5,$6,$7,$8);", [
                 req.body.name,
                 req.body.artist,
                 req.body.image,
                 req.body.trackId,
+                req.body.album,
+                req.body.preview,
+                req.body.genre,
                 req.body.userId
             ]
         )
@@ -103,12 +99,22 @@ sounds.saveSong = (req, res, next) => {
 }
 sounds.allLibrary = (req, res, next) => {
     db
-        .manyOrNone("SELECT * FROM sounds WHERE user_id = $1;", [
-            req.params.id
-
-        ])
+        .manyOrNone(
+            // "SELECT * FROM sounds JOIN users ON sounds.user_id = users.id WHERE users.username = $1;", 
+            "SELECT * FROM sounds WHERE sounds.user_id = $1;", [
+                req.user.id
+            ])
         .then(data => {
-            res.locals.allLibrary = data;
+            console.log(data);
+            res.locals.allLibrary = data.sort((a, b) => {
+                if (a.artist < b.artist) {
+                    return -1
+                } else if (a.artist > b.artist) {
+                    return 1
+                } else {
+                    return 0
+                }
+            })
             next();
         })
         .catch(error => {
@@ -117,6 +123,7 @@ sounds.allLibrary = (req, res, next) => {
         });
 }
 sounds.updateAccountInfo = (req, res, next) => {
+
     db
         .one(
             "UPDATE users SET fname = $1, lname = $2, username = $3, email = $4 WHERE id = $5 RETURNING *;", [
@@ -137,65 +144,46 @@ sounds.updateAccountInfo = (req, res, next) => {
         });
 }
 
-
-
-
-
-
-
-// beers.create = (req, res, next) => {
-//     db
-//         .one(
-//             "INSERT INTO beers (name, category, country, alcohol, price) VALUES ($1, $2, $3, $4, $5) RETURNING id;", [
-//                 req.body.name,
-//                 req.body.category,
-//                 req.body.country,
-//                 req.body.alcohol,
-//                 req.body.price
-//             ]
-//         )
-//         .then(data => {
-//             res.locals.newBeerId = data.id;
-//             next();
-//         })
-//         .catch(error => {
-//             console.log("error encountered in beers.create. Error:", error);
-//             next(error);
-//         });
-// };
-
-// beers.destroy = (req, res, next) => {
-//     db
-//         .none("DELETE FROM beers WHERE id = $1", [req.params.beerId])
-//         .then(() => {
-//             next();
-//         })
-//         .catch(error => {
-//             console.log("error encountered in beers.destroy. error:", error);
-//             next(error);
-//         });
-// };
-
-// beers.update = (req, res, next) => {
-//     db
-//         .one(
-//             "UPDATE beers SET name = $1, category = $2, country = $3, alcohol = $4, price = $5 WHERE id = $6 RETURNING *;", [
-//                 req.body.name,
-//                 req.body.category,
-//                 req.body.country,
-//                 req.body.alcohol,
-//                 req.body.price,
-//                 req.params.beerId
-//             ]
-//         )
-//         .then(data => {
-//             res.locals.updatedBeerData = data;
-//             next();
-//         })
-//         .catch(error => {
-//             console.log("error encountered in beers.update. Error:", error);
-//             next(error);
-//         });
-// };
+sounds.deleteSong = (req, res, next) => {
+    db
+        .none("DELETE FROM sounds WHERE id = $1", [
+            req.body.songId
+        ])
+        .then(data => {
+            res.locals.deleted = data;
+            next();
+        })
+        .catch(error => {
+            console.log("error encountered in sounds.delete error:", error);
+            next(error);
+        });
+};
+sounds.librarySong = (req, res, next) => {
+    console.log("***ooo*** ", req.params.trackId);
+    db
+        .manyOrNone("SELECT * FROM sounds WHERE sounds.user_id = $1 AND sounds.itunes_track_id = $2;", [
+            req.user.id,
+            req.params.trackId
+        ])
+        .then(data => {
+            res.locals.librarySong = data[0];
+            next();
+        })
+        .catch(err => {
+            console.log("error encountered in sounds.librarySong error:", err);
+            next(err);
+        })
+}
 
 module.exports = sounds;
+
+
+
+
+
+
+
+
+
+
+//

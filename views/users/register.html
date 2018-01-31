@@ -5,39 +5,45 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css?family=Dhurjati" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/jquery.js"></script>
     <script src="/js/script.js"></script>
 </head>
 
 <body>
-    <main>
-        <section>
-            <form action="/users" method="POST">
-                <label for="email">Email</label>
-                <br>
-                <input id="email" type="text" name="user[email]" placeholder="john.doe@example.com">
-                <br>
-                <label for="fname">First Name</label>
-                <br>
-                <input id="fname" type="text" name="user[fname]" placeholder="first">
-                <br>
-                <label for="lname">Last Name</label>
-                <br>
-                <input id="lname" type="text" name="user[lname]" placeholder="last">
-                <br>
-                <label for="username">Username</label>
-                <br>
-                <input id="username" type="text" name="user[username]" placeholder="username">
-                <br>
-                <label for="password">Password</label>
-                <br>
-                <input id="password" type="password" name="user[password]" placeholder="P4ssw0rd1234">
-                <br>
-                <input type="submit" value="Sign Up">
-            </form>
-        </section>
-    </main>
+    <div class="main">
+        <div class="login-top grid-3">
+            <div class="login-logo">
+            </div>
+        </div>
+        <div class="grid-3">
+            <div class="grid-col-2">
+                <!--  -->
+                <form action="/users" method="POST">
+                    <div class="centered-true grid-4">
+                        <div>
+                            <input id="email" type="text" name="user[email]" placeholder="email@something.com" class="login-input">
+                            <br>
+                            <input id="fname" type="text" name="user[fname]" placeholder="first name" class="login-input">
+                            <br>
+                            <input id="lname" type="text" name="user[lname]" placeholder="last name" class="login-input">
+                            <br>
+                            <input id="username" type="text" name="user[username]" placeholder="username" class="login-input">
+                            <br>
+                            <input id="password" type="password" name="user[password]" placeholder="password" class="login-input">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="login-control centered-true sign-up-bottom">
+                        <input type="submit" value="Sign Up" class="login-button">
+                        <div><a href="/users/login">Login</a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+        </div>
 </body>
 
 </html>

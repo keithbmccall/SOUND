@@ -16,15 +16,13 @@
     <div class="main">
         <div class="container">
             <div class="nav">
-                <div>{{user.username}}</div>
+                <div class="nav-username centered-true">{{user.username}} || <a href="/users/logout">Logout</a></div>
+                <div class="nav-logo"></div>
                 <ul class="list centered-true">
                     <li><a href="/sounds/account">Account</a></li>
                     <li><a href="/sounds">Browse</a></li>
                     <li><a href="/sounds/library">Library</a></li>
                 </ul>
-                <div class="centered-true logout">
-                    <a href="/users/logout">Logout</a>
-                </div>
             </div>
             <div class="dashboard">
                 <div class="dash-top grid-3 ">
@@ -41,11 +39,32 @@
                     <div class="artist-content ">
                         <h1>BROWSE</h1>
                         <div class="artist ">
-                            {{#allDoomSongs}}
+                            {{#allBrunoSongs}}
                             <div><a href="/sounds/browse/{{trackId}}">
                                 <span>
                             {{artistName}}</span> |<span> {{trackName}}</span></a></div>
-                            {{/allDoomSongs}}
+                            {{/allBrunoSongs}}
+                        </div>
+                        <div class="artist ">
+                            {{#allLordeSongs}}
+                            <div><a href="/sounds/browse/{{trackId}}">
+                                <span>
+                            {{artistName}}</span> |<span> {{trackName}}</span></a></div>
+                            {{/allLordeSongs}}
+                        </div>
+                        <div class="artist ">
+                            {{#allKendrickSongs}}
+                            <div><a href="/sounds/browse/{{trackId}}">
+                                <span>
+                            {{artistName}}</span> |<span> {{trackName}}</span></a></div>
+                            {{/allKendrickSongs}}
+                        </div>
+                        <div class="artist ">
+                            {{#allCaraSongs}}
+                            <div><a href="/sounds/browse/{{trackId}}">
+                                <span>
+                            {{artistName}}</span> |<span> {{trackName}}</span></a></div>
+                            {{/allCaraSongs}}
                         </div>
                     </div>
                 </div>

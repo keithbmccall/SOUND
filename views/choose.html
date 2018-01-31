@@ -17,15 +17,13 @@
     <div class="main">
         <div class="container">
             <div class="nav">
-                <div>{{user.username}}</div>
+                <div class="nav-username centered-true">{{user.username}} || <a href="/users/logout">Logout</a></div>
+                <div class="nav-logo"></div>
                 <ul class="list centered-true">
                     <li><a href="/sounds/account">Account</a></li>
                     <li><a href="/sounds">Browse</a></li>
                     <li><a href="/sounds/library">Library</a></li>
                 </ul>
-                <div class="centered-true logout">
-                    <a href="/users/logout">Logout</a>
-                </div>
             </div>
             <div class="dashboard">
                 <div class="dash-top grid-3 ">
@@ -44,14 +42,25 @@
                         <div class="artist">
                             <h3>{{song.artistName}}</h3>
                             <h4>{{song.trackName}}</h4>
-                            <form id="addToLibrary">
+                            <h4>{{song.collectionName}}</h4>
+                            <h4>{{song.primaryGenreName}}</h4>
+                            <audio controls>
+                                <source src="{{song.previewUrl}}" type="audio/ogg">
+                                <source src="{{song.previewUrl}}" type="audio/mpeg">
+                            </audio>
+                            <form id="addToLibrary" class="input-library">
                                 <input type="hidden" id="name" name="name" value="{{song.trackName}}">
                                 <input type="hidden" id="artist" name="artist" value="{{song.artistName}}">
                                 <input type="hidden" id="image" name="image" value="{{song.artworkUrl100}}">
                                 <input type="hidden" id="userId" name="userId" value="{{user.id}}">
                                 <input id="trackId" name="trackId" type="hidden" value="{{song.trackId}}">
-                                <input type="submit" value="Add to Library">
+                                <input type="hidden" id="album" name="album" value="{{song.collectionName}}">
+                                <input id="preview" name="preview" type="hidden" value="{{song.previewUrl}} ">
+                                <input type="hidden" id="genre" name="genre" value="{{song.primaryGenreName}}">
+                                <input type="submit" value="Add to Library ">
                             </form>
+                            <div id="add-success">
+                            </div>
                         </div>
                     </div>
                 </div>

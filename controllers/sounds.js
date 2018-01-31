@@ -4,11 +4,10 @@ const auth = require('../services/auth');
 
 router.get("/", auth.restrict, sounds.allPreSongs, (req, res, next) => {
     res.render("index", {
-        allDoomSongs: res.locals.allDoomData,
-        allViktorSongs: res.locals.allViktorData,
-        allDangerSongs: res.locals.allDangerData,
-        allKingSongs: res.locals.allKingData,
-        allJJSongs: res.locals.allJJData,
+        allBrunoSongs: res.locals.allBrunoData,
+        allKendrickSongs: res.locals.allKendrickData,
+        allCaraSongs: res.locals.allCaraData,
+        allLordeSongs: res.locals.allLordeData,
         user: req.user
     });
 });
@@ -39,14 +38,14 @@ router.get("/library", auth.restrict, sounds.allLibrary, (req, res, next) => {
 router.post("/browse/:trackId", auth.restrict, sounds.saveSong, (req, res, next) => {
     res.json(res.locals.library)
 })
-router.get("/library/:trackId", auth.restrict, sounds.specificSong, (req, res, next) => {
-    console.log(res.locals.specificSong)
+router.get("/library/:trackId", auth.restrict, sounds.librarySong, (req, res, next) => {
+    console.log(res.locals.librarySong)
     res.render("songpage", {
-        song: res.locals.specificSong,
+        song: res.locals.librarySong,
         user: req.user
     })
 })
-router.get('/account', auth.restrict, (req, res, next) => {
+router.get('/account', (req, res, next) => {
     res.render("users/profile", {
         user: req.user
     });
@@ -60,6 +59,8 @@ router.get('/account/edit', auth.restrict, (req, res, next) => {
 router.put('/account/edit', auth.restrict, sounds.updateAccountInfo, (req, res, next) => {
     res.json(res.locals.updatedUserData);
 });
-
+router.delete('/library/:trackId', auth.restrict, sounds.deleteSong, (req, res, next) => {
+    res.json(res.locals.deleted)
+})
 
 module.exports = router;

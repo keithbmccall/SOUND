@@ -21,7 +21,10 @@ CREATE TABLE sounds (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255),
   artist VARCHAR(255),
+  album VARCHAR(255),
   image VARCHAR(2000),
+  preview VARCHAR(2000),
+  genre VARCHAR(255),
   itunes_track_id VARCHAR(255),
   user_id INTEGER
 );

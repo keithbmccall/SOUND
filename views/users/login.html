@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login User</title>
+    <title>Login</title>
     <link href="https://fonts.googleapis.com/css?family=Dhurjati" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/jquery.js"></script>
@@ -14,21 +14,18 @@
 <body>
     <div class="main">
         <div class="login-top grid-3">
-            <div class="login-logo"></div>
+            <div class="login-logo">
+            </div>
         </div>
         <div class="grid-3">
             <div class="grid-col-2">
                 <!--  -->
                 <form action="/users/login" method="POST">
                     <div class="centered-true grid-4">
-                        <div class="login-label">
-                            <label for="email" class="label">Email</label>
-                            <label for="password" class="label">Password</label>
-                        </div>
                         <div>
                             <input id="email" type="text" name="user[email]" placeholder="email" class="login-input">
                             <br>
-                            <input id="password" type="password" name="user[password]" placeholder="P4ssw0rd1234" class="login-input">
+                            <input id="password" type="password" name="user[password]" placeholder="password" class="login-input">
                             <br>
                         </div>
                     </div>
@@ -41,14 +38,6 @@
                 </form>
             </div>
         </div>
-        <!-- <div class="login-bottom grid-3">
-    <div class="grid-col-2">
-        <div>
-            <input type="submit" value="Login" class="login-button">
-        </div>
-        <div><a href="/users/register">Sign Up</a></div>
-    </div>
-</div> -->
 </body>
 
 </html>
