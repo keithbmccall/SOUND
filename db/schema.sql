@@ -20,7 +20,8 @@ CREATE TABLE sounds (
   preview VARCHAR(2000),
   genre VARCHAR(255),
   itunes_track_id VARCHAR(255),
-  user_id INTEGER
+  user_id INTEGER,
+  comments VARCHAR(255)
 );
 
 DROP TABLE IF EXISTS users_sounds;

@@ -77,7 +77,7 @@ sounds.specificSong = (req, res, next) => {
 sounds.saveSong = (req, res, next) => {
     db
         .none(
-            "INSERT INTO sounds (name, artist, image, itunes_track_id, album, preview, genre, user_id) VALUES ($1,$2,$3,$4,$5,$6,$7,$8);", [
+            "INSERT INTO sounds (name, artist, image, itunes_track_id, album, preview, genre, user_id, comments) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9);", [
                 req.body.name,
                 req.body.artist,
                 req.body.image,
@@ -85,7 +85,8 @@ sounds.saveSong = (req, res, next) => {
                 req.body.album,
                 req.body.preview,
                 req.body.genre,
-                req.body.userId
+                req.body.userId,
+                ""
             ]
         )
         .then(data => {
@@ -154,10 +155,26 @@ sounds.deleteSong = (req, res, next) => {
             next();
         })
         .catch(error => {
-            console.log("error encountered in sounds.delete error:", error);
+            console.log("error encountered in sounds.deleteSong error:", error);
             next(error);
         });
 };
+sounds.updateComment = (req, res, next) => {
+    db
+        .one(
+            "UPDATE sounds SET comments = $1 WHERE id = $2", [
+                req.body.comments,
+                req.body.songId
+            ])
+        .then(data => {
+            res.locals.comments = data;
+            next();
+        })
+        .catch(error => {
+            console.log("error encountered in sounds.updateComment error:", error);
+            next(error);
+        });
+}
 sounds.librarySong = (req, res, next) => {
     console.log("***ooo*** ", req.params.trackId);
     db

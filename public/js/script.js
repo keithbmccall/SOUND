@@ -1,15 +1,6 @@
 $(function() {
     console.log('connected-ed');
 
-    $('#searchbar').on("keyup", event => {
-        //referenced from https://stackoverflow.com/questions/979662/how-to-detect-pressing-enter-on-keyboard-using-jquery
-        //specifically the need for prevent default.
-        event.preventDefault();
-        if (event.keycode == 13) {
-
-        }
-    })
-
     $('#addToLibrary').submit(event => {
         event.preventDefault();
 
@@ -81,5 +72,29 @@ $(function() {
 
             }
         })
+    })
+    $('#addToComments').submit(event => {
+        event.preventDefault();
+
+        // const goBack = window.history.back;
+        const data = $('#addToComments').serialize();
+        const trackId = $('#trackId').val();
+        console.log(`Form data: ${data}`);
+        console.log(`trackId: ${trackId}`)
+        $.ajax({
+            url: `/sounds/library/${trackId}`,
+            data: data,
+            type: 'put',
+            success: data => {
+                console.log('~~~~comment added ', data);
+                window.location.href = `/sounds/library/${trackId}`;
+
+            },
+            error: function(xhr, status, error) {
+                //error taken from beer app
+            }
+
+        })
+
     })
 })

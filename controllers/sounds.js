@@ -73,5 +73,7 @@ router.put('/account/edit', auth.restrict, sounds.updateAccountInfo, (req, res, 
 router.delete('/library/:trackId', auth.restrict, sounds.deleteSong, (req, res, next) => {
     res.json(res.locals.deleted)
 })
-
+router.put('/library/:trackId', auth.restrict, sounds.updateComment, (req, res, next) => {
+    res.json(res.locals.comments)
+})
 module.exports = router;
