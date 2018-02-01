@@ -114,6 +114,7 @@ img {
 }
 
 
+
 /*GENERAL STYLE*/
 
 .nav {
@@ -232,7 +233,6 @@ h1 {
 
 #addToComments {
     position: relative;
-    text-align: center;
 }
 
 #comments {
@@ -241,6 +241,7 @@ h1 {
     padding: 5px;
     height: 100px;
     width: 300px;
+    text-align: center;
 }
 
 #comments:hover {
