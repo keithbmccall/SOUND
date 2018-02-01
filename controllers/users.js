@@ -1,8 +1,7 @@
 const User = require('../models/users');
 const router = require('express').Router();
 const passport = require('passport');
-const dateFormat = require('dateformat');
-let now = new Date();
+
 
 // const controller = require('./controller');
 const auth = require('../services/auth');
@@ -11,7 +10,7 @@ const auth = require('../services/auth');
 // users index
 
 router.get('/', (req, res, next) => {
-    res.redirect('library');
+    res.redirect('/sounds/library');
 });
 
 router.post(

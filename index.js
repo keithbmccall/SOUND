@@ -53,11 +53,14 @@ app.listen(port, () => { console.log("Server started on " + port); });
 
 const soundsRouter = require('./controllers/sounds.js');
 
-// hook it up to the app
+
 app.use('/sounds', soundsRouter);
 
 const userRouter = require('./controllers/users.js');
 app.use('/users', userRouter);
+
+const rerouteRouter = require('./controllers/reroute.js');
+app.use('/', rerouteRouter);
 
 // Set up error handling middleware (notice that this is the LAST thing we do)
 app.use((err, req, res, next) => {
