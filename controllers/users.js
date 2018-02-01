@@ -1,6 +1,8 @@
 const User = require('../models/users');
 const router = require('express').Router();
 const passport = require('passport');
+const dateFormat = require('dateformat');
+let now = new Date();
 
 // const controller = require('./controller');
 const auth = require('../services/auth');
@@ -51,7 +53,6 @@ router.get('/logout', (req, res) => {
 
 router.get('/login', (req, res) => {
     res.render('users/login');
-    // res.render('users/profile');
 });
 
 // passport.authenticate will _build_ middleware for us

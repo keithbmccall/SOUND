@@ -16,7 +16,7 @@
     <div class="main">
         <div class="container">
             <div class="nav">
-                <div class="nav-username centered-true">{{user.username}} || <a href="/users/logout">Logout</a></div>
+                <div class="nav-username centered-true"><a href="/sounds/account">{{user.username}}</a> || {{theDate}} || <a href="/users/logout">Logout</a></div>
                 <div class="nav-logo"></div>
                 <ul class="list centered-true">
                     <li><a href="/sounds/account">Account</a></li>
@@ -40,28 +40,28 @@
                         <h1>BROWSE</h1>
                         <div class="artist ">
                             {{#allBrunoSongs}}
-                            <div><a href="/sounds/browse/{{trackId}}">
+                            <div><a href="/sounds/browse/{{trackId}}"><span><img class="search-image" src="{{artworkUrl100}}" alt=""> | </span>
                                 <span>
                             {{artistName}}</span> |<span> {{trackName}}</span></a></div>
                             {{/allBrunoSongs}}
                         </div>
                         <div class="artist ">
                             {{#allLordeSongs}}
-                            <div><a href="/sounds/browse/{{trackId}}">
+                            <div><a href="/sounds/browse/{{trackId}}"><span><img class="search-image" src="{{artworkUrl100}}" alt=""> | </span>
                                 <span>
                             {{artistName}}</span> |<span> {{trackName}}</span></a></div>
                             {{/allLordeSongs}}
                         </div>
                         <div class="artist ">
                             {{#allKendrickSongs}}
-                            <div><a href="/sounds/browse/{{trackId}}">
+                            <div><a href="/sounds/browse/{{trackId}}"><span><img class="search-image" src="{{artworkUrl100}}" alt=""> | </span>
                                 <span>
                             {{artistName}}</span> |<span> {{trackName}}</span></a></div>
                             {{/allKendrickSongs}}
                         </div>
                         <div class="artist ">
                             {{#allCaraSongs}}
-                            <div><a href="/sounds/browse/{{trackId}}">
+                            <div><a href="/sounds/browse/{{trackId}}"><span><img class="search-image" src="{{artworkUrl100}}" alt=""> | </span>
                                 <span>
                             {{artistName}}</span> |<span> {{trackName}}</span></a></div>
                             {{/allCaraSongs}}

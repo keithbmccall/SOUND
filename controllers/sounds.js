@@ -1,6 +1,10 @@
 const router = require("express").Router();
 const sounds = require("../models/sounds");
 const auth = require('../services/auth');
+const dateFormat = require('dateformat');
+let now = new Date();
+
+
 
 router.get("/", auth.restrict, sounds.allPreSongs, (req, res, next) => {
     res.render("index", {
@@ -8,13 +12,15 @@ router.get("/", auth.restrict, sounds.allPreSongs, (req, res, next) => {
         allKendrickSongs: res.locals.allKendrickData,
         allCaraSongs: res.locals.allCaraData,
         allLordeSongs: res.locals.allLordeData,
-        user: req.user
+        user: req.user,
+        theDate: dateFormat(now, "mmm dS")
     });
 });
 router.get('/search/results', auth.restrict, sounds.searchedSongs, (req, res, next) => {
     res.render("search", {
         searchedSongs: res.locals.searchedSongs,
-        user: req.user
+        user: req.user,
+        theDate: dateFormat(now, "mmm dS")
     });
 
 });
@@ -23,7 +29,8 @@ router.get("/browse/:trackId", auth.restrict, sounds.specificSong, (req, res, ne
     console.log(res.locals.specificSong)
     res.render("choose", {
         song: res.locals.specificSong,
-        user: req.user
+        user: req.user,
+        theDate: dateFormat(now, "mmm dS")
     })
 
 })
@@ -32,7 +39,8 @@ router.get("/library", auth.restrict, sounds.allLibrary, (req, res, next) => {
     console.log(req.user);
     res.render("library", {
         allLibrary: res.locals.allLibrary,
-        user: req.user
+        user: req.user,
+        theDate: dateFormat(now, "mmm dS")
     })
 })
 router.post("/browse/:trackId", auth.restrict, sounds.saveSong, (req, res, next) => {
@@ -42,18 +50,21 @@ router.get("/library/:trackId", auth.restrict, sounds.librarySong, (req, res, ne
     console.log(res.locals.librarySong)
     res.render("songpage", {
         song: res.locals.librarySong,
-        user: req.user
+        user: req.user,
+        theDate: dateFormat(now, "mmm dS")
     })
 })
-router.get('/account', (req, res, next) => {
+router.get('/account', auth.restrict, (req, res, next) => {
     res.render("users/profile", {
-        user: req.user
+        user: req.user,
+        theDate: dateFormat(now, "mmm dS")
     });
 
 });
 router.get('/account/edit', auth.restrict, (req, res, next) => {
     res.render("users/edit", {
-        user: req.user
+        user: req.user,
+        theDate: dateFormat(now, "mmm dS")
     });
 });
 router.put('/account/edit', auth.restrict, sounds.updateAccountInfo, (req, res, next) => {
