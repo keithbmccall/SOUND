@@ -1,3 +1,4 @@
+//from classroom demonstration-
 const bcrypt = require('bcryptjs');
 
 const db = require('../db/index.js');

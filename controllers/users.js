@@ -1,3 +1,4 @@
+//from classroom demonstration- there are a few modifications made
 const User = require('../models/users');
 const router = require('express').Router();
 const passport = require('passport');
