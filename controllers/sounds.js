@@ -57,14 +57,7 @@ router.get("/library/:trackId", auth.restrict, sounds.librarySong, (req, res, ne
         theDate: dateFormat(now, "mmm dS")
     })
 })
-router.get("/:artistName", auth.restrict, sounds.renderNews, (req, res, next) => {
-    console.log(res.locals.news);
-    res.render("news", {
-        news: res.locals.news,
-        user: req.user,
-        theDate: dateFormat(now, "mmm dS")
-    })
-})
+
 router.get('/account', auth.restrict, (req, res, next) => {
     res.render("users/profile", {
         user: req.user,
@@ -86,6 +79,14 @@ router.delete('/library/:trackId', auth.restrict, sounds.deleteSong, (req, res, 
 })
 router.put('/library/:trackId', auth.restrict, sounds.updateComment, (req, res, next) => {
     res.json(res.locals.comments)
+})
+router.get("/:artistName", auth.restrict, sounds.renderNews, (req, res, next) => {
+    console.log(res.locals.news);
+    res.render("news", {
+        news: res.locals.news,
+        user: req.user,
+        theDate: dateFormat(now, "mmm dS")
+    })
 })
 
 module.exports = router;
