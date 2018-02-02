@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{song.name}} by {{song.artist}}</title>
+    <title>News</title>
     <link href="https://fonts.googleapis.com/css?family=Dhurjati" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Padauk" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
@@ -36,35 +36,19 @@
                         </form>
                     </div>
                 </div>
-                <div class="artist-content grid">
+                <div class="artist-content grid-3">
                     <div class="grid-col-2 choose">
-                        <div><a href="/sounds/{{song.artist}}">News Feed</a></div>
-                        <img src="{{song.image}}" alt="">
-                        <div class="artist">
-                            <h3>{{song.artist}}</h3>
-                            <h4>{{song.name}}</h4>
-                            <h4>{{song.album}}</h4>
-                            <h4>{{song.genre}}</h4>
-                            <audio controls>
-                                <source src="{{song.preview}}" type="audio/ogg">
-                                <source src="{{song.preview}}" type="audio/mpeg">
-                            </audio>
-                            <form id="deleteFromLibrary" class="input-library">
-                                <input type="hidden" id="songId" name="songId" value="{{song.id}}">
-                                <input type="submit" value="Delete ">
-                            </form>
-                            <h3>Comments</h3>
-                            <form id="addToComments" class="input-library centered-true">
-                                <input name="comments" id="comments" value="{{song.comments}}"></input>
-                                <br>
-                                <input type="submit" value="Update">
-                                <input type="hidden" id="songId" name="songId" value="{{song.id}}">
-                            </form>
+                        <div>{{#news}}
+                            <div class="news">
+                                <h2><a href="{{link}}">{{title}}</a></h2>
+                                <div>{{description}}</div>
+                            </div>{{/news}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

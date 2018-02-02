@@ -1,6 +1,8 @@
 const axios = require('axios');
 const db = require("../db/index.js");
 const userData = require('./users.js');
+const GoogleNewsRss = require('google-news-rss');
+const googleNews = new GoogleNewsRss();
 const sounds = {};
 
 
@@ -27,6 +29,7 @@ sounds.allPreSongs = (req, res, next) => {
             res.locals.allKendrickData = response[1].data.results;
             res.locals.allCaraData = response[2].data.results;
             res.locals.allLordeData = response[3].data.results;
+            res.locals.test = response[4];
             next();
         })
         .catch(err => {
@@ -191,6 +194,22 @@ sounds.librarySong = (req, res, next) => {
             next(err);
         })
 }
+sounds.renderNews = (req, res, next) => {
+    const artist = req.params.artistName;
+    googleNews
+        .search(`${artist}`)
+        .then(response => {
+            res.locals.news = response;
+            next();
+        })
+        .catch(err => {
+            console.log("Error encountered in sounds.renderNews:",
+                err
+            );
+        })
+
+};
+
 
 module.exports = sounds;
 

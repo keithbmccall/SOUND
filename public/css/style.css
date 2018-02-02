@@ -115,6 +115,10 @@ img {
 
 
 
+
+
+
+
 /*GENERAL STYLE*/
 
 .nav {
@@ -246,4 +250,9 @@ h1 {
 
 #comments:hover {
     border: 2px solid black;
+}
+
+.news {
+    font-size: 13px;
+    margin-bottom: 20px;
 }

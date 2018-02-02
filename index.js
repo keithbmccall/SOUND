@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const dateFormat = require('dateformat');
+const GoogleNewsRss = require('google-news-rss');
 
 
 const app = express();
