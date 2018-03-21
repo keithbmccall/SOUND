@@ -1,3 +1,4 @@
+\c wired_sounds
 
 DROP TABLE IF EXISTS users;
 
