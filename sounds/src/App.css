@@ -1,0 +1,113 @@
+body {
+  font-family: "Dhurjati", sans-serif;
+  letter-spacing: 1px;
+}
+.Main-container {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+.Content-container {
+  width: 100%;
+  grid-column-start: 2;
+  margin-top: 50px;
+}
+.Search-holder {
+  width: 100vw;
+  position: fixed;
+  height: 50px;
+  background: #ddd;
+  display: grid;
+  grid-template-columns: 20% 80% 10%;
+}
+.Searchbar-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Searchbar-container {
+  grid-column-start: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Searchbar {
+  border-radius: 5px;
+  width: 400px;
+  height: 2em;
+  padding: 0 20px;
+  border: 2px solid black;
+  font-family: helvetica;
+  background: #ccd;
+}
+.Button {
+  cursor: pointer;
+}
+.Nav-holder {
+  position: fixed;
+  background: linear-gradient(to bottom, #ddd, #ddd, #167499);
+  width: 20%;
+  height: 100vh;
+}
+.Nav-container {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 15% 75% 10%;
+}
+.Nav-link-box {
+  grid-column-start: 2;
+  margin-top: 30px;
+}
+.Nav-links {
+  color: black;
+  font-size: 35px;
+}
+.Nav-links,
+a {
+  text-decoration: none;
+}
+.Big-title {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+}
+.Discover-container {
+  height: 100%;
+}
+.Top-songs-container {
+  margin-left: 10%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+.Top-songs-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 15px;
+  margin-bottom: 25px;
+  font-family: "Padauk", sans-serif;
+}
+.Top-songs-image {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+.Top-songs-text {
+  font-size: 12px;
+}
+.Top-songs-artist {
+  font-size: 16px;
+}
+.Discover {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.Discover-image {
+  height: 100px;
+  width: 100px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
