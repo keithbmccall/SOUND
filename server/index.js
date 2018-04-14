@@ -1,5 +1,3 @@
-require("dotenv").config();
-const app = express();
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
@@ -8,7 +6,8 @@ const tokenService = require("./services/TokenService");
 const userRouter = require("./controllers/users");
 const authService = require("./services/AuthService");
 const path = require("path");
-
+//
+const app = express();
 app.use(cors());
 app.use(logger("dev"));
 app.use(bodyParser.json());

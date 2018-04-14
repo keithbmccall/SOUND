@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "animated": "^0.2.2",
-    "react-transition-group": "^2.3.0"
-  }
-}

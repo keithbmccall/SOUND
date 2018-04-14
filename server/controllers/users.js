@@ -1,77 +1,29 @@
 //from classroom demonstration- there are a few modifications made
-const User = require("../models/users");
+const user = require("../models/users");
 const router = require("express").Router();
-const passport = require("passport");
-
-const auth = require("../services/auth");
+const TokenService = require("../services/TokenService");
 
 // ----------------------------------------
 // users index
 
-router.get("/", (req, res, next) => {
-    res.redirect("/sounds/library");
+router.get("/", (req, res) => {
+    res.json({ user: "it worked" });
 });
 
-router.post(
-    "/",
-
-    passport.authenticate("local-signup", {
-        failureRedirect: "/users/register",
-        successRedirect: "/sounds/library"
-    })
-);
-
-// ----------------------------------------
-// register new user
-
-router.get("/register", (req, res) => {
-    res.render("users/register");
+// note how res.locals is returned in both creating a user and logging in
+router.post("/", user.create, (req, res) => {
+    res.json({ token: res.locals.token, user: res.locals.user });
 });
 
-// ----------------------------------------
-// user logout
-
-router.get("/logout", (req, res) => {
-    // passport put this method on req for us
-    req.logout();
-    // redirect back to index page
-    res.redirect("/users/login");
-});
-
-// ----------------------------------------
-// user login
-
-router.get("/login", (req, res) => {
-    res.render("users/login");
-});
-
-// passport.authenticate will _build_ middleware for us
-// based on the 'local-login' strategy we registered with
-// passport in auth.js
-
-router.post(
-    "/login",
-    passport.authenticate("local-login", {
-        failureRedirect: "/users/login",
-        successRedirect: "/sounds/library"
-    })
-);
-
-// ----------------------------------------
-// user profile
-
-router.get(
-    "/profile",
-    // Middleware ensuring that if the user is not
-    // authenticated, he or she will be redirected to the login screen.
-    auth.restrict,
-    User.findByEmailMiddleware,
-    (req, res) => {
-        console.log("in handler for users/profile");
-        console.log("req.user:");
-        console.log(req.user);
-        res.render("library", { user: res.locals.userData });
+// if the user didn't get created thrown an error
+// else include the user and token in the response
+router.post("/login", user.login, (req, res) => {
+    if (!res.locals.user) {
+        res.status(401).json({ err: "Login Failed" });
+    } else {
+        const { password_digest, ...user } = res.locals.user;
+        res.json({ token: res.locals.token, user });
     }
-);
+});
 
 module.exports = router;
